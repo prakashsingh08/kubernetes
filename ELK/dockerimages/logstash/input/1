@@ -1,0 +1,1 @@
+2015/11/10 06:49:59 [warn] 10#0: *557119 an upstream response is buffered to a temporary file /var/lib/nginx/proxy/4/80/0000003804 while reading upstream, client: 66.249.88.173, server: 0.0.0.0, request: "GET /kibana/index.js?_b=1273 HTTP/1.1", upstream: "http://172.17.0.30:9000/kibana/index.js?_b=1273", host: "app.logz.io", referrer: "https://app.logz.io/kibana/index.html"

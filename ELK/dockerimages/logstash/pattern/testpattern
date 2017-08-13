@@ -1,0 +1,2 @@
+
+MYMONTH %{NUMBER: newmonth}
