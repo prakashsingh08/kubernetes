@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: es-client
+  namespace: logging
+  labels:
+    component: elasticsearch
+spec:
+  template:
+    metadata:
+      labels:
+        component: elasticsearch
+    spec:
+      containers:
+      - name: es-client
+        image: prakashsingh08/elasticsearch:v1
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 9200
+        resources:
+          limits:
+            memory: 2Gi
+        volumeMounts:
+        - name: datadir
+          mountPath: /opt/soft/elasticsearch-5.5.1/data
+      volumes:
+          - name: datadir
+            hostPath:
+              path: /opt/elasticsearch/data
+      nodeSelector:
+        kubernetes.io/hostname: ip-172-31-21-14

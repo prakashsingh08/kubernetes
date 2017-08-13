@@ -1,0 +1,39 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: logstashdepl
+  namespace: logging
+  labels:
+    component: logstash
+spec:
+  template:
+    metadata:
+      labels:
+        component: logstash
+    spec:
+      containers:
+      - name: logstashc
+        image: prakashsingh08/logstash:v1
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 9600
+#        resources:
+#          limits:
+#            memory: 1Gi
+        volumeMounts:
+        - name: input
+          mountPath: /opt/input
+#        - name: config-volume
+#          mountPath: /etc/elasticsearch
+      volumes:
+          - name: input
+            hostPath:
+              path: /opt/logstash_input/input
+#          - name: config-volume
+#            configMap:
+#              name: elastic-config
+#          - emptyDir:
+#              medium: ""
+#            name: "storage"
+      nodeSelector:
+        kubernetes.io/hostname: ip-172-31-37-51
